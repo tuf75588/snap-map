@@ -17,7 +17,7 @@ function App({children}) {
   return (
     <FigbirdProvider feathers={client}>
       <div>some stuff lol</div>
-      <Login />
+      <Login login={() => client.authenticate} />
     </FigbirdProvider>
   );
 }
