@@ -7,10 +7,13 @@
     "@feathersjs/feathers": "^4.3.4",
     "@feathersjs/socketio-client": "^4.3.4",
     "@reach/router": "^1.2.1",
+    "bootswatch": "^4.3.1",
     "figbird": "^0.3.0",
     "react": "^16.10.2",
+    "react-bootstrap": "^1.0.0-beta.14",
     "react-dom": "^16.10.2",
     "react-scripts": "3.2.0",
+    "reactn": "^2.2.4",
     "socket.io-client": "^2.3.0"
   },
   "scripts": {
@@ -35,6 +38,8 @@
     ]
   },
   "devDependencies": {
+    "eslint": "^6.5.1",
+    "eslint-plugin-react": "^7.16.0",
     "prettier": "^1.18.2"
   }
 }

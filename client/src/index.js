@@ -1,23 +1,21 @@
-import React from 'react';
+import React, {useGlobal, setGlobal} from 'reactn';
 import ReactDOM from 'react-dom';
 import {Provider as FigbirdProvider, useGet} from 'figbird';
 import createFeathersClient from '@feathersjs/feathers';
 import client from './feathersClient';
-import Login from './screens/home';
-function Note({id}) {
-  const users = useGet('users', id);
-  console.log(users);
-  if (!users) return <p>loading..</p>;
+import Login from './components/Login';
+import 'bootswatch/dist/cerulean/bootstrap.min.css';
+import './index.css';
 
-  return <div>Note</div>;
-}
+setGlobal({
+  user: null
+});
 
 function App({children}) {
-  console.log(client);
+  const [user] = useGlobal('user');
   return (
     <FigbirdProvider feathers={client}>
-      <div>some stuff lol</div>
-      <Login login={() => client.authenticate} />
+      {user ? <h1>Hello {user.name}</h1> : <Login />}
     </FigbirdProvider>
   );
 }
