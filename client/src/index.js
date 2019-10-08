@@ -5,7 +5,10 @@ import createFeathersClient from '@feathersjs/feathers';
 import client from './feathersClient';
 import Login from './components/Login';
 import 'bootswatch/dist/cerulean/bootstrap.min.css';
+import 'mapbox-gl/dist/mapbox-gl.css';
 import './index.css';
+import {Router} from '@reach/router';
+import Map from './components/Map';
 
 setGlobal({
   user: null
@@ -14,9 +17,11 @@ setGlobal({
 function App({children}) {
   const [user] = useGlobal('user');
   return (
-    <FigbirdProvider feathers={client}>
-      {user ? <h1>Hello {user.name}</h1> : <Login />}
-    </FigbirdProvider>
+    <Router>
+      <FigbirdProvider feathers={client}>
+        {user ? <Map /> : <Login />}
+      </FigbirdProvider>
+    </Router>
   );
 }
 
