@@ -11,19 +11,18 @@ const loginStyles = {
 };
 function Login(props) {
   const feathers = useFeathers();
-  const [user, setUser] = useGlobal('user');
+  const {1: setUser} = useGlobal('user');
 
   useEffect(() => {
     feathers
       .reAuthenticate()
       .then(({user}) => {
         setUser(user);
-        console.log('logged in!', user);
       })
       .catch((error) => {
         console.warn('Oh no! there was an error!', error);
       });
-  }, [setUser, feathers]);
+  }, [feathers, setUser]);
   return (
     <div style={loginStyles}>
       <Button variant="danger" href="http://localhost:3030/oauth/github">

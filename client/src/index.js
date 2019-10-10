@@ -14,14 +14,13 @@ setGlobal({
   user: null
 });
 
-function App({children}) {
+function App() {
   const [user] = useGlobal('user');
+
   return (
-    <Router>
-      <FigbirdProvider feathers={client}>
-        {user ? <Map /> : <Login />}
-      </FigbirdProvider>
-    </Router>
+    <FigbirdProvider feathers={client}>
+      {user ? <Map /> : <Login />}
+    </FigbirdProvider>
   );
 }
 
