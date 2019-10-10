@@ -4,8 +4,9 @@ import Button from 'react-bootstrap/Button';
 import ReactMapGL, {Marker} from 'react-map-gl';
 import {getLocation} from '../utils/location';
 import Navbar from 'react-bootstrap/Navbar';
-
+import useLocation from '../hooks/useLocation';
 function Map() {
+  const location = useLocation();
   const [viewport, setViewport] = useState({
     width: window.innerWidth,
     height: window.innerHeight,
@@ -28,24 +29,16 @@ function Map() {
       window.removeEventListener('resize', handleResize);
     };
   });
-  const findLocation = () => {
-    return getLocation().then(({coords: {latitude, longitude}}) => {
-      setViewport((prev) => {
-        return {
-          ...prev,
-          latitude,
-          longitude
-        };
-      });
-      showMarker(true);
-    });
-  };
+
   const feathers = useFeathers();
 
+  console.log(location);
   return (
     <React.Fragment>
-      <Navbar bg="primary" navbar-dark fixed="top">
-        <Navbar.Brand href="#home">SnapMap</Navbar.Brand>
+      <Navbar bg="primary" fixed="top">
+        <Navbar.Brand href="#home" style={{color: '#fff'}}>
+          SnapMap
+        </Navbar.Brand>
         <Button
           variant="danger"
           onClick={() => {
@@ -60,23 +53,25 @@ function Map() {
       <ReactMapGL
         {...viewport}
         mapStyle="mapbox://styles/mapbox/light-v10"
-        onViewportChange={(viewport) => setViewport(viewport)}
+        onViewportChange={setViewport}
         mapboxApiAccessToken={process.env.REACT_APP_MAP_TOKEN}
       >
-        <Marker
-          latitude={37.78}
-          longitude={-122.41}
-          offsetLeft={-20}
-          offsetTop={-10}
-        >
-          <span
-            role="img"
-            aria-label="map marker emoji"
-            style={{fontSize: `${viewport.zoom * 0.5}rem`}}
+        {location && (
+          <Marker
+            latitude={location.latitude}
+            longitude={location.longitude}
+            offsetLeft={-20}
+            offsetTop={-10}
           >
-            📷
-          </span>
-        </Marker>
+            <span
+              role="img"
+              aria-label="map marker emoji"
+              style={{fontSize: `${viewport.zoom * 0.5}rem`}}
+            >
+              📷
+            </span>
+          </Marker>
+        )}
       </ReactMapGL>
     </React.Fragment>
   );
