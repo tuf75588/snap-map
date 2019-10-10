@@ -71,7 +71,7 @@ npm run dev
   - elegant mongodb object modeling for node.js
 - [socket.io](https://socket.io/)
   - Realtime server events
-- [grant](https://github.com/simov/grant) with google oauth
+- [grant](https://github.com/simov/grant) with github oauth
   - OAuth Middleware for Express, Koa and Hapi
 
 ### Image Filter APIs
