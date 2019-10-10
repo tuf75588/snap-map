@@ -2,7 +2,6 @@ import React, {useGlobal, useState, useEffect} from 'reactn';
 import {useFeathers} from 'figbird';
 import Button from 'react-bootstrap/Button';
 import ReactMapGL, {Marker} from 'react-map-gl';
-import {getLocation} from '../utils/location';
 import Navbar from 'react-bootstrap/Navbar';
 import useLocation from '../hooks/useLocation';
 function Map() {
@@ -10,9 +9,9 @@ function Map() {
   const [viewport, setViewport] = useState({
     width: window.innerWidth,
     height: window.innerHeight,
-    latitude: 37.7577,
-    longitude: -122.4376,
-    zoom: 8,
+    latitude: 31.9742044,
+    longitude: -49.25875,
+    zoom: 2,
     visible: true
   });
   const [marker, showMarker] = useState(false);
@@ -30,9 +29,18 @@ function Map() {
     };
   });
 
+  useEffect(() => {
+    if (location) {
+      setViewport((v) => ({
+        ...v,
+        ...location,
+        zoom: 8
+      }));
+    }
+  }, [location, setViewport]);
+
   const feathers = useFeathers();
 
-  console.log(location);
   return (
     <React.Fragment>
       <Navbar bg="primary" fixed="top">
@@ -53,7 +61,7 @@ function Map() {
       <ReactMapGL
         {...viewport}
         mapStyle="mapbox://styles/mapbox/light-v10"
-        onViewportChange={setViewport}
+        onViewportChange={(vp) => setViewport(vp)}
         mapboxApiAccessToken={process.env.REACT_APP_MAP_TOKEN}
       >
         {location && (
@@ -66,7 +74,7 @@ function Map() {
             <span
               role="img"
               aria-label="map marker emoji"
-              style={{fontSize: `${viewport.zoom * 0.5}rem`}}
+              style={{fontSize: `${viewport.zoom * 0.2}rem`}}
             >
               📷
             </span>
