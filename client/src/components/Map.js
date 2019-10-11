@@ -1,9 +1,11 @@
-import React, {useGlobal, useState, useEffect} from 'reactn';
+import React, {useGlobal, useState, useEffect, useRef} from 'reactn';
 import {useFeathers} from 'figbird';
 import Button from 'react-bootstrap/Button';
 import ReactMapGL, {Marker} from 'react-map-gl';
 import Navbar from 'react-bootstrap/Navbar';
 import useLocation from '../hooks/useLocation';
+import InputGroup from 'react-bootstrap/InputGroup';
+import FileUpload from './FileUpload';
 function Map() {
   const location = useLocation();
   const [viewport, setViewport] = useState({
@@ -40,7 +42,7 @@ function Map() {
   }, [location, setViewport]);
 
   const feathers = useFeathers();
-
+  const fileRef = useRef();
   return (
     <React.Fragment>
       <Navbar bg="primary" fixed="top">
@@ -57,6 +59,7 @@ function Map() {
         >
           Logout
         </Button>
+        <FileUpload />
       </Navbar>
       <ReactMapGL
         {...viewport}
