@@ -32,5 +32,6 @@
       }
     }
   },
-  "mongodb": "mongodb://localhost:27017/server"
+  "mongodb": "mongodb://localhost:27017/server",
+  "imgur": "IMGUR_CLIENT_ID"
 }
