@@ -13,8 +13,7 @@ function Map() {
     height: window.innerHeight,
     latitude: 31.9742044,
     longitude: -49.25875,
-    zoom: 2,
-    visible: true
+    zoom: 2
   });
   const [marker, showMarker] = useState(false);
   useEffect(() => {
@@ -68,17 +67,8 @@ function Map() {
         mapboxApiAccessToken={process.env.REACT_APP_MAP_TOKEN}
       >
         {location && (
-          <Marker
-            latitude={location.latitude}
-            longitude={location.longitude}
-            offsetLeft={-20}
-            offsetTop={-10}
-          >
-            <span
-              role="img"
-              aria-label="map marker emoji"
-              style={{fontSize: `${viewport.zoom * 0.2}rem`}}
-            >
+          <Marker latitude={location.latitude} longitude={location.longitude} offsetLeft={-20} offsetTop={-10}>
+            <span role="img" aria-label="map marker emoji" style={{fontSize: `${viewport.zoom * 0.2}rem`}}>
               📷
             </span>
           </Marker>

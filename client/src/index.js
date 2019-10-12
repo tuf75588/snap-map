@@ -7,7 +7,6 @@ import Login from './components/Login';
 import 'bootswatch/dist/cerulean/bootstrap.min.css';
 import 'mapbox-gl/dist/mapbox-gl.css';
 import './index.css';
-import {Router} from '@reach/router';
 import Map from './components/Map';
 
 setGlobal({
