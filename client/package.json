@@ -15,7 +15,7 @@
     "react-map-gl": "^5.0.12",
     "react-scripts": "5.0.1",
     "reactn": "^2.2.4",
-    "socket.io-client": "^2.3.0"
+    "socket.io-client": "^2.5.0"
   },
   "scripts": {
     "start": "react-scripts start",
